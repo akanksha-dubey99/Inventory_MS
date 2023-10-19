@@ -1,0 +1,31 @@
+.container1{
+    width: 60%;
+  margin: auto;
+  margin-top: 10px;
+}
+.label{
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 3%;
+}
+.select1{
+    margin-top: 10px;
+}
+#button {
+    background-color: #0071dc;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    font-family: "Open Sans", sans-serif;
+    cursor: pointer;
+    transition: background-color 0.5s;
+    padding: 5px;
+    color: white;
+    margin-top: 2%;
+    height: 2.5rem;
+    width: 10%;
+}
+#button:hover {
+    background-color: #f354ff;
+    color: white;
+}
