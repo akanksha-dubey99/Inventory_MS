@@ -22,9 +22,7 @@ function Add_header(){
          </div>
          <div><button id="logout"> <a >LOG OUT </a></button></div>
         </div>
-        <div className="footer">
-      <p>© 2023 - Inventory Management System</p>
-    </div>
+        
         </>
     );
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import Add_header from "./Components/Header";
+import Footer from "./Components/Footer";
 import AddInventory from "./Pages/ManageInventory";
 import { BrowserRouter,Routes,Route } from "react-router-dom";
 import Home from "./Pages/Home";
@@ -27,7 +28,7 @@ export default function App() {
       <Route path="addNewEmployee" element={<NewEmployee/>}/>
     </Routes>
     </BrowserRouter>
-    
+   <Footer/>
     </>
   ); 
 }
