@@ -3,47 +3,72 @@ import '../Style/ManageInventory.css'
 import Data from '../Demo_Data/Data';
 
 function Inventory(){
-    const [category,setCategory]=useState();
-
-     const listCategory=Data.map((item,index)=>
-        <option key={index} value={item.Category}>h{item.category}</option>
+    const [fillform,setFillform]=useState([])
+    const [subCategory,setSubCategory]=useState([]);
+    
+     const listCategory=Data.map((item)=>
+        <option key={item.id} value={item.Category}>{item.Category}</option>
         );
+
+        
+        //const Add_div=document.getElementById('hide');
+
+        function handleSubCategory(){
+            const SelectedCategory=document.getElementById('SelecteCategory').value;
+            const selectSubcategory=document.getElementById('subCategory');
+          //   console.log(SelectedCategory)
+          if(SelectedCategory==="Miscellaneous"){
+            const options = document.createElement("option");
+            options.text = "Add Item";
+            options.value = "Add Item";
+            selectSubcategory.appendChild(options);
+          }else{
+            //if(document.getElementById('subCategory'))
+            const options = document.removeChild("option");
+            options.text = "Add Item";
+            options.value = "Add Item";
+          }
+           const listSubCategory=Data.map((item)=>item.Category===SelectedCategory?<option key={item.id} value={item.SubCategory}>{item.SubCategory}</option>:'No Sub-Category Available');
+           setSubCategory(listSubCategory);
+    
+        }
+
+        function handleSubmit(){
+
+        }
 
     return(
         <>
         <div className="container1">
         <h1 style={{margintop:1,fontweight:'bold',textAlign:'center'}}>Add Inventory</h1>
         <hr/>
-        <div>
+        <form onSubmit={handleSubmit}>
+          <div>
             <label className='label'>Item Category:</label>
-            <select className='select1 form-control'>
+            <select className='select1 form-control' id='SelecteCategory' onChange={handleSubCategory}>
                 <option value={''}>--Select an option--</option>
-                {listCategory}
-                {/* <option value={'Sanitation'}>Sanitation</option>
-                <option value={'Miscellaneous'}>Miscellaneous</option>
-                <option value={'Stationary'}>Stationary</option>
-                <option value={'Accessories'}>Accessories</option>
-                <option value={'Welcome Kit'}>Welcome Kit</option>
-                <option value={'Grocery'}>Grocery</option> */}
+                {listCategory}            
             </select>
-        </div>
-           
-         <div>
+         </div>
+         
+          <div>
             <label className='label'>Sub Category:</label>
-            <select className='select1 form-control'>
+            <select className='select1 form-control'  id='subCategory' > 
                 <option value={''}>--Select an option--</option>
-                {/* <option value={'Sanitation'}>Sanitation</option>
-                <option value={'Miscellaneous'}>Miscellaneous</option>
-                <option value={'Stationary'}>Stationary</option>
-                <option value={'Accessories'}>Accessories</option>
-                <option value={'Welcome Kit'}>Welcome Kit</option>
-                <option value={'Grocery'}>Grocery</option> */}
+                {subCategory}
             </select>
+         </div>
+
+         <div id='hide'>
+         <label className='label'>Add Item:</label>
+          <input type='text' className='select1 form-control'/>
+          
          </div>
           
           <div>
           <label className='label'>Quantity:</label>
           <input type='number' className='select1 form-control' min={1}/>
+          <span id='quantity'></span>
           </div>
            
            <div>
@@ -53,7 +78,8 @@ function Inventory(){
            <div>
            <button id="button" type="submit">Submit</button>
           </div>
-
+        </form>
+        
         </div>
         </>
     );
