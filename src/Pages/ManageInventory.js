@@ -18,13 +18,6 @@ function Inventory(){
             <label className='label'>Item Category:</label>
             <select className='select1 form-control'>
                 <option value={''}>--Select an option--</option>
-                {listCategory}
-                {/* <option value={'Sanitation'}>Sanitation</option>
-                <option value={'Miscellaneous'}>Miscellaneous</option>
-                <option value={'Stationary'}>Stationary</option>
-                <option value={'Accessories'}>Accessories</option>
-                <option value={'Welcome Kit'}>Welcome Kit</option>
-                <option value={'Grocery'}>Grocery</option> */}
             </select>
         </div>
            

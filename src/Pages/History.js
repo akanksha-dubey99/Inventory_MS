@@ -1,5 +1,12 @@
 import Data from "../Demo_Data/Data";
 import "../Style/History.css"
+import { Navigate } from 'react-router-dom';
+import ViewIssue from './Issue'
+  
+    function handleClick() {
+      window.location.href = './Issue';
+    }
+
 
 function History(){
     return (
@@ -8,6 +15,7 @@ function History(){
 
             <h2 className="addhead text-center" >History</h2>
             <hr/>
+            <button className="addnew"  onClick={handleClick} style={{float: 'right'}}>Issue Item</button>
         <table className="tbl1 table">
             <thead className="thead-dark">
                 <tr>

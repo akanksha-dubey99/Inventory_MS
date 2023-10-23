@@ -21,8 +21,8 @@
 
 }
 .nav-link:hover {
-    border-bottom: 1px solid #0d6efd;
-    color:#0d6efd;
+    border-bottom: 1px solid aliceblue;
+    color:aliceblue;
    
 }
 
@@ -51,6 +51,16 @@
     color: white;
 }
 
+.footer {
+    background-color: #070b3b;
+    color: white;
+    text-align: center;
+    /* padding: 20px; */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  
 
 /*     
 .nav-link{
