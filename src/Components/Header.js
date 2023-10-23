@@ -15,13 +15,16 @@ function Add_header(){
                 <li ><a href='/dashboard' className='nav-link' >Dashboard</a></li>
                 <li> <a href='/history' className='nav-link' >History</a></li>
                 <li> <a href='/manageInventory' className='nav-link' >Manage Inventory</a></li>
-                <li> <a href='#dashboard' className='nav-link' >Stock</a></li>
-                <li> <a href='#dashboard' className='nav-link' >Grocery</a></li>
-                <li> <a href='#dashboard' className='nav-link' >Add New Employee</a></li>
+                <li> <a href='/stock' className='nav-link' >Stock</a></li>
+                <li> <a href='/grocery' className='nav-link' >Grocery</a></li>
+                <li> <a href='/addNewEmployee' className='nav-link' >Add New Employee</a></li>
             </ul>
          </div>
          <div><button id="logout"> <a >LOG OUT </a></button></div>
         </div>
+        <div className="footer">
+      <p>© 2023 - Inventory Management System</p>
+    </div>
         </>
     );
 }
