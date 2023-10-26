@@ -51,14 +51,23 @@
     color: white;
 }
 
-.footer {
+.ifooter {
+    position:fixed;
+    left:0;
+    bottom:0;
+    right:0;
     background-color: #070b3b;
     color: white;
     text-align: center;
-    bottom: 0;
+    height: 2rem;
+    /* background-color: #070b3b;
+    color: white;
+    text-align: center;
+    bottom: 0;   
     width: 100%;
-    margin-top: 2%;
     height: 3rem;
+    position: fixed; */
+    /* margin-top: 2%; */
   }
   #sp{
     margin-top: 10px;

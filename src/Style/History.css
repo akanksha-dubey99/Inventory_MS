@@ -16,11 +16,16 @@
     transition: background-color 0.5s;
     padding: 5px;
     color: white;
-    margin-top: 2%;
+    margin-top: 1%;
     height: 2.5rem;
     width: 10%;
 }
 .addnew:hover {
     background-color: #f354ff;
     color: white;
+}
+#tbldiv{
+    margin-top: 7%;
+    height: 550px;
+    font-size: 15px;
 }
