@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@canvasjs/react-charts": "^1.0.0",
     "@ag-grid-community/styles": "^30.2.0",
+    "@canvasjs/react-charts": "^1.0.0",
     "@emotion/react": "^11.11.1",
     "@mui/styled-engine-sc": "^6.0.0-alpha.2",
     "@mui/x-data-grid": "^6.16.2",

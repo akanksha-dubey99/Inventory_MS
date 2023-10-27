@@ -12,7 +12,7 @@ import NewEmployee from "./Pages/NewEmployee";
 import AddNewGrocery from "./Pages/AddNewGrocery";
 import Login from "./Pages/Login";
 import {Loginheader,Add_header} from "./Components/Header"
-import Footer from "./Components/Footer";
+//import Footer from "./Components/Footer";
 import ViewStock from "./Pages/Stock";
 import ViewGrocery from "./Pages/Grocery";
 import ViewIssue from "./Pages/Issue";
@@ -49,8 +49,7 @@ export default function App() {
             <Route path="addNewEmployee" element={<NewEmployee />} />
             <Route path="Login" element={<Login />} />
           </Routes>
-        </BrowserRouter>
-   <Footer/>  </div>
+        </BrowserRouter> </div>
       {window.location.pathname !== "/ABC" ? <Footer /> : null}
     </div>
     </>
