@@ -1,5 +1,6 @@
 import React from "react";
 import Foo from "./Components/Header";
+import Footer from "./Components/Footer";
 import AddInventory from "./Pages/ManageInventory";
 import { BrowserRouter,Routes,Route} from "react-router-dom";
 import AppD from "./Pages/Dashboard";
@@ -49,7 +50,7 @@ export default function App() {
             <Route path="Login" element={<Login />} />
           </Routes>
         </BrowserRouter>
-      </div>
+   <Footer/>  </div>
       {window.location.pathname !== "/ABC" ? <Footer /> : null}
     </div>
     </>
