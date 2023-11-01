@@ -1,0 +1,11 @@
+.tbldivstock{
+    /* max-width: 60%; */
+    margin: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+#tbldivstock{
+    margin-top: 4%;
+    height: 500px;
+    font-size: 15px;
+}
