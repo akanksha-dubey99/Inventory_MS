@@ -1,6 +1,6 @@
 import axios from "axios";
 import authHeader from "./services/auth-header";
-import API_url from "../Constant/urlConstants";
+import {API_url} from "../Constant/urlConstants";
 
 const getHistory= async ()=>{
     return await axios.get(
