@@ -96,28 +96,28 @@ const Stock = () => {
       field: "issue_Quantity",
       sortable: true,
       filter: true,
-       width: "220%",
+       flex:1,
     },
     {
       headerName: "Left Quantity",
       field: "left_quantity",
       sortable: true,
       filter: true,
-      width: "220%",
+      flex:1,
     },
     {
       headerName: "Total Quantity",
       field: "total_quantity",
       sortable: true,
       filter: true,
-       width: "220%",
+       flex:1,
     },
     {
-      headerName: "MoreInfo",
+      headerName: "More Info",
       cellRenderer: LinkComponent,
       sortable: true,
       filter: true,
-      width: "220%",
+      flex:1,
     },
   ];
   return (

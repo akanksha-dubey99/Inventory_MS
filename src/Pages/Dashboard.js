@@ -15,6 +15,7 @@ function ViewDashboard(){
   const [Sanitation,setSanitation]=useState([{sub_category:'',quantity:0}]);
   const [Accessories,setAccessories]=useState([{sub_category:'',quantity:0}]);
   const [WelcomeKit,setWelcomeKit]=useState([{sub_category:'',quantity:0 }]);
+  const [Miscellaneous,setMiscellaneous]=useState([{sub_category:'',quantity:0 }]);
   useEffect(()=>{
     fetchDUsedUnits()
     fetchLeftUnits()
@@ -23,6 +24,7 @@ function ViewDashboard(){
     fetchSanitation()
     fetchAccessories()
     fetchWelcomeKit()
+    fetchMiscellaneous()
 },[])
 const fetchDUsedUnits=()=>{
   dashboardServices.getUsedUnit().then(
@@ -94,6 +96,16 @@ const fetchWelcomeKit=()=>{
       } ,(error) => {
           console.log("error: ",error)
         });}
+const fetchMiscellaneous=()=>{
+  dashboardServices.Miscellaneous().then(
+    (response)=>{
+        if(response.status == 200){
+          setMiscellaneous(response.data)
+            console.log(response.data)
+        }
+    } ,(error) => {
+        console.log("error: ",error)
+      });}
   const options1 = {
     animationEnabled: true,
     animationDuration: 4000,
@@ -157,7 +169,6 @@ const fetchWelcomeKit=()=>{
     },
     data: [
       {type: 'pie',
-        //color: "rgba(2,12,32,.3)",
         dataPoints: Accessories.map((dp) => ({ label: dp.sub_category, y: dp.quantity, label: String(dp.sub_category) })),
       },], },
   options7 = {
@@ -179,7 +190,7 @@ const fetchWelcomeKit=()=>{
     },
     data: [
       {type: 'line',
-        dataPoints: Accessories.map((dp) => ({ label: dp.sub_category, y: dp.quantity, label: String(dp.sub_category) })),
+        dataPoints: Miscellaneous.map((dp) => ({ label: dp.sub_category, y: dp.quantity, label: String(dp.sub_category) })),
       },], },
   containerProps = {width: '95%',height: '420px',margin: '20px',};
   return(

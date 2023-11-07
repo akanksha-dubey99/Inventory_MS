@@ -59,6 +59,14 @@ const WelcomeKit = async ()=>{
         }
     )
 }
+const Miscellaneous = async ()=>{
+    return await axios.get(
+        `${Dashboard_url}/Miscellaneous`,
+        {
+            headers: {"Accept": "application/json"}
+        }
+    )
+}
 const dashboardServices={
     getUsedUnit,
     getLeftUnit,
@@ -66,6 +74,7 @@ const dashboardServices={
     Stationary,
     Sanitation,
     Accessories,
-    WelcomeKit
+    WelcomeKit,
+    Miscellaneous
 }
 export default dashboardServices
