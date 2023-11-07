@@ -1,10 +1,10 @@
 import axios from "axios";
 import authHeader from "./services/auth-header";
-import API_url from "../Constant/urlConstants";
+import {API_History} from "../Constant/urlConstants";
 
 const getHistory= async ()=>{
     return await axios.get(
-        `${API_url}/GetHistory`,
+        `${API_History}/GetHistory`,
         {
             headers: {"Accept": "application/json"}
         }
@@ -14,7 +14,7 @@ const getHistory= async ()=>{
 
 const GetCategory=()=>{
 return axios.get(
-    `${API_url}/Category`,
+    `${API_History}/Category`,
     {
         headers: {"Accept": "application/json"}
     }
@@ -23,7 +23,7 @@ return axios.get(
 
 const GetEmployee=()=>{
     return axios.get(
-        `${API_url}/GetEmployee`,
+        `${API_History}/GetEmployee`,
         {
             headers: {"Accept": "application/json"}
         }
@@ -32,7 +32,7 @@ const GetEmployee=()=>{
 
 const Get_Subcategory=(selectedCategory)=>{
     return axios.get(
-        `${API_url}/GetSubcategory?selectedCategory=${selectedCategory}`,
+        `${API_History}/GetSubcategory?selectedCategory=${selectedCategory}`,
         {
             headers: {"Accept": "application/json"}
         }
@@ -41,11 +41,21 @@ const Get_Subcategory=(selectedCategory)=>{
 
 const GetQuantity=(subCategory)=>{
     return axios.get(
-            `${API_url}/GetQuantity?subCategory=${subCategory}`,
+            `${API_History}/GetQuantity?subCategory=${subCategory}`,
             {
                 headers: {"Accept": "application/json"}
             }
     )
+}
+
+const Post_Dispatch=(input)=>{
+   return axios.post(
+    `${API_History}/Dispatch`,
+    input,
+    {
+        headers: {"Accept": "application/json"}
+    }
+   )
 }
 
 const historyServices={
@@ -53,7 +63,8 @@ const historyServices={
     GetCategory,
     GetEmployee,
     Get_Subcategory,
-    GetQuantity
+    GetQuantity,
+    Post_Dispatch
 }
 
 export default historyServices

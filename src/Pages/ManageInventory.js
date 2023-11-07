@@ -1,57 +1,208 @@
-import { useState } from 'react';
-import '../Style/ManageInventory.css'
-import Data from '../Demo_Data/Data';
+import { useEffect, useState } from "react";
+import "../Style/ManageInventory.css";
+import {
+  Box,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
+  TextField,
+} from "@mui/material";
+import historyServices from "../shared/history-services";
+import inventoryServices from "../shared/services/inventory-services";
+import { Autocomplete, createFilterOptions } from "@mui/material";
 
-function Inventory(){
-    const [category,setCategory]=useState();
+function Inventory() {
+  const [item, setItem] = useState([]);
+  const [subitem, setSubitem] = useState([]);
+  const [show, setShow] = useState(false);
+  const [quantity, setQuantity] = useState("");
+  const [category, setCategory] = useState("");
+  const [subCategory, setSubCategory] = useState("");
+  const [message, setMessage] = useState("");
+  const input = {
+    item_category: category,
+    sub_category: subCategory,
+    quantity: quantity,
+  };
 
-     const listCategory=Data.map((item,index)=>
-        <option key={index} value={item.Category}>h{item.category}</option>
-        );
+  const filter = createFilterOptions();
 
-    return(
-        <>
-        <div className="container1">
-        <h1 style={{margintop:1,fontweight:'bold',textAlign:'center'}}>Add Inventory</h1>
-        <hr/>
-        <div>
-            <label className='label'>Item Category:</label>
-            <select className='select1 form-control'>
-                <option value={''}>--Select an option--</option>
-            </select>
-        </div>
-           
-         <div>
-            <label className='label'>Sub Category:</label>
-            <select className='select1 form-control'>
-                <option value={''}>--Select an option--</option>
-                {/* <option value={'Sanitation'}>Sanitation</option>
-                <option value={'Miscellaneous'}>Miscellaneous</option>
-                <option value={'Stationary'}>Stationary</option>
-                <option value={'Accessories'}>Accessories</option>
-                <option value={'Welcome Kit'}>Welcome Kit</option>
-                <option value={'Grocery'}>Grocery</option> */}
-            </select>
-         </div>
-          
-          <div>
-          <label className='label'>Quantity:</label>
-          <input type='number' className='select1 form-control' min={1}/>
-          </div>
-           
-           <div>
-           <label className='label'>Price (Per Piece):</label>
-          <input type='number' className='select1 form-control'  placeholder=" optional" pattern="[0-9]+" min="1"/>
-           </div>
-           <div>
-           <button id="button" type="submit">Submit</button>
-          </div>
+  useEffect(() => {
+    Category();
+  }, []);
 
-        </div>
-        </>
+  const Category = () => {
+    historyServices.GetCategory().then(
+      (response) => {
+        if (response.status == 200) {
+          setItem(response.data);
+        }
+      },
+      (error) => {
+        console.log("error", error);
+      }
     );
+  };
+
+  const SubCategory = (selectedCategory) => {
+    historyServices.Get_Subcategory(selectedCategory).then(
+      (response) => {
+        if (response.status == 200) {
+          setSubitem(response.data);
+        }
+      },
+      (error) => {
+        console.log("error", error);
+      }
+    );
+  };
+
+  const InventoryData = (input) => {
+    inventoryServices.PostInventoryData(input).then(
+      (response) => {
+        if (response.status == 200) {
+          setCategory("");
+          setSubCategory("");
+          setQuantity("");
+          setMessage(response.data);
+          console.log(response.data)
+        }
+      },
+      (error) => {
+        console.log("error", error);
+      }
+    );
+  };
+
+  function handleChange(e) {
+    setMessage("");
+    var selectedCategory = e.target.value;
+    setCategory(e.target.value);
+    if (
+      selectedCategory == "Miscellaneous" ||
+      selectedCategory == "Medicines" ||
+      selectedCategory == "Grocery" ||
+      selectedCategory == "Housekeeping"
+    ) {
+      setShow(true);
+    }
+    SubCategory(selectedCategory);
+  }
+
+  let handleSubmit = (e) => {
+    e.preventDefault();
+    InventoryData(input);
+  };
+
+  function Common_Option() {
+    return (
+      <>
+        <FormControl sx={{ width: "75%", marginTop: "5%" }} variant="standard">
+          <InputLabel id="sub">Sub-Category</InputLabel>
+          <Select
+            labelId="sub"
+            value={subCategory}
+            onChange={(e) => setSubCategory(e.target.value)}
+            required
+            defaultValue={""}
+          >
+            {/* <MenuItem value="">--Select--</MenuItem> */}
+            {subitem.map((subcategory) => (
+              <MenuItem value={subcategory} key={subcategory}>{subcategory}</MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </>
+    );
+  }
+
+  function Add_Item() {
+    return (
+      <>
+        <FormControl sx={{ width: "75%", marginTop: "5%" }} variant="standard">
+          <Autocomplete
+            value={subCategory}
+            onChange={(event, value) => setSubCategory(value)}
+            filterOptions={(options, params) => {
+              const filtered = filter(options, params);
+              // Suggest the creation of a new value
+              if (params.inputValue !== "") {
+                filtered.push(`${params.inputValue}`);
+              }
+              return filtered;
+            }}
+            selectOnFocus
+            clearOnBlur
+            handleHomeEndKeys
+            options={subitem}
+            // renderOption={(option) => option}
+            // style={{ width: '75%' }}
+            freeSolo
+            renderInput={(params) => (
+              <TextField {...params} variant="standard" label="Sub Category" />
+            )}
+            required
+            defaultValue={""}
+          />
+        </FormControl>
+      </>
+    );
+  }
+
+  return (
+    <>
+      <div className="container1">
+        <h1 style={{ margintop: 1, fontweight: "bold", textAlign: "center" }}>
+          Add Inventory
+        </h1>
+        <hr />
+        <Box textAlign={"center"} sx={{ marginTop: 5 }}>
+        <div className="message" style={{margintop:'1%'}}>{message ? <p style={{color:"green"}}>{message}</p> : null}</div>
+          {/* <span style={{ color: "green" }}>{message}</span> */}
+          <form onSubmit={handleSubmit} style={{ marginTop: "2%" }}>
+            <FormControl fullWidth sx={{ width: "75%" }} variant="standard">
+              <InputLabel id="demo-select">Category</InputLabel>
+              <Select
+                labelId="demo-select"
+                onChange={handleChange}
+                value={category}
+                required
+              >
+                {/* <MenuItem value="" selected='selected'>--Select--</MenuItem> */}
+                {item.map((category) => (
+                  <MenuItem value={category} key={category}>{category}</MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            {show ? <Add_Item /> : <Common_Option />}
+
+            <TextField
+              id="qty"
+              label="Quantity"
+              variant="standard"
+              type="number"
+              InputProps={{ inputProps: { min: "0" } }}
+              sx={{ m: 5, width: "75%" }}
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+              required
+            />
+
+            {/* <TextField id="price" label="Price (Per Piece)" variant="standard" type="number" InputProps={{ inputProps: { min: "0" } }} sx={{ m: 1, width: '75%' }} /> */}
+            <br />
+
+            <button type="submit" className="btn btn-primary">
+              Add
+            </button>
+          </form>
+        </Box>
+      </div>
+    </>
+  );
 }
 
-export default function AddInventory(){
-    return <Inventory/>
+export default function AddInventory() {
+  return <Inventory />;
 }

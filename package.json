@@ -6,6 +6,8 @@
     "@ag-grid-community/styles": "^30.2.0",
     "@canvasjs/react-charts": "^1.0.0",
     "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.15",
     "@mui/styled-engine-sc": "^6.0.0-alpha.2",
     "@mui/x-data-grid": "^6.16.2",
     "@testing-library/jest-dom": "^5.17.0",

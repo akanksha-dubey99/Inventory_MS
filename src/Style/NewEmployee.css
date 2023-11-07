@@ -1,0 +1,29 @@
+#emp_div{
+    /* border: 2px solid green; */
+    width: 80%;
+    margin: auto;
+    margin-top: 1%;
+}
+
+#div_form{
+     /* border: 2px solid green; */
+    width: 70%;
+   padding-bottom: 3%;
+    text-align: center;
+    margin-top: 2.5%;
+}
+.btn{
+width: 15%;
+margin-top: 2%;
+}
+
+#hr{
+    width: 70%;
+    margin: auto;
+}
+
+.message{
+    text-align: center;
+    margin-top: 2%;
+    font-size: large;
+}

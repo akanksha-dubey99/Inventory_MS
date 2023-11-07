@@ -1,37 +1,107 @@
-import '../Style/Login.css'
-import innologo from '../Components/innologo.jpg';
+import "../Style/Login.css";
+import innologo from "../Components/innologo.jpg";
+import { Box, Button, FormControl, TextField } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import inventoryServices from "../shared/services/inventory-services";
+import { Loginheader } from "../Components/Header";
+import Footer from "../Components/Footer";
 
-function handleClick() {
-    window.location.href = './dashboard';
-  }
 const Login = () => {
-    return(
-      <>
-      <form id='background'>
-        <div className='logindiv'>
-        <div class="containerlog">
-        <div className='image'>
-        <img src={innologo} alt="Logo" className='img'/>;
-        </div>
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+  const [islogged, setIslogged] = useState();
+  // const [login,setLogin]=useState(true);
+  const input = {
+    Email: email,
+    Password: pass,
+  };
 
-         <div>
-            <input type='text' placeholder='Email' className='inplog form-control' min={1}/>
+  // const navigate = useNavigate();
 
-         </div>
-          
-          <div>
-          <input type='email' placeholder='Password' className='inplog form-control' min={1}/>
-          </div>
+  function HandleLogin() {
+    window.location.href = "./dashboard";
+    // navigate("/dashboard");
+  }
 
-            <button id="buttonlog" onClick={handleClick} className='form-control' type="submit" name="Login">LOGIN</button>
-            <div> <a id="fp" href="/Users/ForgetPassword"> Reset Password?</a>
-            <a id="fp" href="/Users/NewUser">Sign Up </a></div>
-        </div>
-        </div>
-        </form>
-      </>
+  const Login = (input) => {
+    inventoryServices.UserLoginDetails(input).then(
+      (response) => {
+        if (response.status == 200) {
+          if (response.data === true) {
+            // console.log(response.data);
+            // setIslogged(response.data)
+            // setLogin(response.data)
+            localStorage.setItem("isLoggedIn", JSON.stringify(response.data));
+            HandleLogin()
+          }
+        }
+      },
+      (error) => {
+        console.log("error", error);
+      }
     );
+  };
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log("input:- ",input);
+    Login(input);
+  }
+
+  return (
+    <>
+      <div>
+        <Box id="background">
+        <Loginheader />
+          <Box id="logindiv">
+            <div className="image">
+              <img src={innologo} alt="Logo" className="img" />
+            </div>
+            <form id="loginForm" onSubmit={handleSubmit}>
+              <FormControl>
+                <TextField
+                  variant="outlined"
+                  placeholder="Email"
+                  type="email"
+                  color="success"
+                  onChange={(e) => setEmail(e.target.value)}
+                  value={email}
+                  sx={{ background: "white", width: "20rem" }}
+                  required
+                />
+              </FormControl>
+              <FormControl>
+                <TextField
+                  variant="outlined"
+                  type="password"
+                  placeholder="Password"
+                  color="success"
+                  onChange={(e) => setPass(e.target.value)}
+                  value={pass}
+                  sx={{ background: "white", marginTop: 3, width: "20rem" }}
+                  required
+                />
+              </FormControl>
+
+              <Button
+                type="submit"
+                variant="contained"
+                color="success"
+                sx={{ marginTop: 3, width: "20rem", height: "3rem" }}>
+                {" "}
+                Login
+              </Button>
+            </form>
+
+            {/* {islogged?<HandleLogin/>:(<div style={{color:'white',textAlign:'center',fontSize:'20px',marginTop:3}}><i> {login?'':"Please Enter Valid Credentials"} </i></div>)} */}
+          </Box>
+          <Footer/>
+        </Box>
+      </div>
+    </>
+  );
 };
-export default function viewLogin(){
-    return<Login/>
+export default function viewLogin() {
+  return <Login />;
 }

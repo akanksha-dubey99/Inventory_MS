@@ -1,20 +1,9 @@
 import '../Style/Header.css';
 import 'react-bootstrap';
-import Footer from './Footer';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-// import AddInventory from '../Pages/ManageInventory';
-// import History from '../Pages/History';
-// import ViewStock from '../Pages/Stock';
-// import ViewGrocery from '../Pages/Grocery';
-// import ViewIssue from '../Pages/Issue';
-// import AppD from "../Pages/Dashboard";
-
-import NewEmployee from "../Pages/NewEmployee";
-import AddNewGrocery from "../Pages/AddNewGrocery";
-import Login from "../Pages/Login";
 
 function handleClick() {
-    window.location.href = './Login';
+    localStorage.clear()
+    window.location.href = '/Login'; 
 }
 
 export function Add_header() {

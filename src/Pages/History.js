@@ -1,13 +1,12 @@
 import "../Style/History.css"
-import { Navigate } from 'react-router-dom';
-import ViewIssue from './Issue'
 import historyServices from "../shared/history-services";
 import { useEffect, useState } from "react";
-import { AgGridColumn, AgGridReact } from 'ag-grid-react';
+import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import 'ag-grid-community/styles/ag-theme-balham.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {Box, Button} from "@mui/material";
 
   
     function handleClick() {
@@ -28,8 +27,6 @@ function History(){
                 if(response.status == 200){
                     setData(response.data)
                 }
-                // console.log("response:- ", response.data)             
-                // console.log("response:- ",JSON.parse(JSON.stringify(response)))
             } ,(error) => {
                 console.log("error: ",error)
             }
@@ -37,28 +34,31 @@ function History(){
     }
 
      const columnDefs=[
-        { headerName:'Category',field:'category',sortable: true, filter: true},
-        { headerName:'SubCategory',field:'subCategory',sortable: true, filter: true},
-        { headerName:'Quantity',field:'quantity',sortable: true, filter: true},
-        { headerName:'Employee ID',field:'emp_ID',sortable: true, filter: true},
-        { headerName:'Employee Name',field:'employee_Name',sortable: true, filter: true},
-        { headerName:'Remarks',field:'remarks',sortable: true, filter: true},
-        { headerName:'Date',field:'date',sortable: true, filter: true}
-    ]
-        
+        { headerName:'Category',field:'category',sortable: true, filter: true,resizable:true,flex:1},
+        { headerName:'SubCategory',field:'subCategory',sortable: true, filter: true,flex:1},
+        { headerName:'Quantity',field:'quantity',sortable: true, filter: true,flex:1},
+        { headerName:'Employee ID',field:'emp_ID',sortable: true, filter: true,flex:1},
+        { headerName:'Employee Name',field:'employee_Name',sortable: true, filter: true,flex:1},
+        { headerName:'Remarks',field:'remarks',sortable: true, filter: true,flex:1},
+        { headerName:'Date',field:'date',sortable: true, filter: true,flex:1}
+     ]
+ 
 
     return (
         <>
-        <div className="tbldiv">
+        <div className="div_main">
 
             <h2 className="addhead text-center" >History</h2>
             <hr/>
-            <div>
-            <button className="addnew"  onClick={handleClick} style={{float: 'right'}}>Issue Item</button>
-            </div>
+            <Box sx={{height:'3rem'}}>
+            <Button variant="outlined"  onClick={handleClick} style={{float: 'right'}} >Issue Item</Button>
+            </Box>
+            <Box >
             <div className="ag-theme-balham" id="tbldiv">
-                <AgGridReact columnDefs={columnDefs} rowData={data} pagination={true} paginationPageSize={16}/>
+            
+                <AgGridReact columnDefs={columnDefs} rowData={data} pagination={true} paginationPageSize={15} containerStyle={{margin:'auto'}}/>
             </div>
+            </Box>
         </div>
       
         </>
