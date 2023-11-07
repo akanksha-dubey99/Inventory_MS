@@ -1,4 +1,4 @@
-.addnew{
+/* .addnew{
     background-color: #0071dc;
     border: none;
     border-radius: 4px;
@@ -9,4 +9,11 @@
     width: 105px;
     color: white;
     height: 2.5rem;
+} */
+
+#agdiv{
+    margin: auto;
+    /* width: 90%; */
+    height: 30rem;
+    font-size:medium;
 }

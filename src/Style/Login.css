@@ -1,21 +1,36 @@
 #background{
     background-image: url("https://images.unsplash.com/photo-1614028674026-a65e31bfd27c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
-    background-size: cover; /* Adjust as needed */
+    background-size:cover; /* Adjust as needed */
     background-repeat: no-repeat; 
-    height: 95vh;
+    height: 100vh;
 }
 
-.containerlog{
+#loginForm{
+    /* background-color: aliceblue; */
+    width: 25%;
+    margin: auto;
+    padding: 1%;
+    text-align: center;
+    height:35vh;
+}
+
+#logindiv{
+    backdrop-filter: blur(2px);
+    opacity: 1;
+
+}
+
+/* .containerlog{
     width: 20%;
   margin: auto;
   margin-top: 30px;
-  backdrop-filter: blur(3px);
-}
+  backdrop-filter: blur(1px);
+} */
 
-.logindiv{
+/* .logindiv{
     display: flex;
     padding: 1.375rem 1.75rem;  
-}
+} */
 
 .img{
     border-radius: 50%;
@@ -24,14 +39,16 @@
             display: flex;
 }
 .image{
-    padding-top: 20%;
+    padding-top: 8%;
     text-align: -webkit-center;
+    width: 50%;
+    margin: auto;
 }
-.inplog{
+/* .inplog{
     margin-top: 20px;
     width: 50%;
-    /* padding: 12px 20px; */
-    /* margin: 8px 0; */
+    padding: 12px 20px;
+    margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
@@ -48,15 +65,15 @@
     height: 3rem;
     color: white;
     padding: 14px 20px;
-    /* margin: 8px 0; */
+    margin: 8px 0;
     border: none;
     width: 100%;
     margin-top: 25px;
-}
-#buttonlog:hover {
+} */
+/* #buttonlog:hover {
     opacity: 0.8;
     color: white;
-}
+} */
 #fp{
     color: whitesmoke;
     text-decoration:none;

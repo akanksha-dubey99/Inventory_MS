@@ -15,11 +15,14 @@
 #button {
     background-color: #0071dc;
     border: none;
-    border-radius: 4px;
+    border-radius: 6%;
     font-size: 15px;
     font-family: "Open Sans", sans-serif;
     cursor: pointer;
     transition: background-color 0.5s;
+    padding: 1%;
+    width: 6rem;
+    height: 2.5rem;
 }
 
     #button:disabled {

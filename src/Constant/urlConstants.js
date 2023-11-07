@@ -1,3 +1,5 @@
-export const API_url="https://localhost:7172/History"
+export const API_History="https://localhost:7172/History"
+export const Api_Employee="https://localhost:7172/Employee"
+export const API_Inventory="https://localhost:7172/api/Inventory"
 export const Dashboard_url = "https://localhost:7172/Dashboard"
 export const Stock_url = "https://localhost:7172/Stock"
