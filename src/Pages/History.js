@@ -21,9 +21,9 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-const innerstyle={
-    marginRight:"10px",
-}
+const innerstyle = {
+  marginRight: "30px",
+};
 
 function handleClick() {
   window.location.href = "./Issue";
@@ -33,6 +33,7 @@ function History() {
   const [data, setData] = useState([]);
   const [subcat, setSubCat] = useState([]);
   const [empName, setEmpName] = useState({});
+  const [modalData, setmodalData] = useState([]);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -42,11 +43,10 @@ function History() {
   }, []);
 
   function LinkComponent(e) {
-    console.log(e.data.employee_Name);
     if (e.data.isReturnable == true) {
       return (
         <Button
-          onClick={() => modelOpen(e.data.subCategory, e.data.employee_Name)}
+          onClick={() => modelOpen(e.data.subCategory, e.data.employee_Name, e.data)}
         >
           Return
         </Button>
@@ -55,8 +55,38 @@ function History() {
       return <Button disabled>Non-Returnable</Button>;
     }
   }
+  const dataReturn = () => {
+    console.log(modalData);
+    handleClose(true);
+    historyServices.ReturnData(modalData).then(
+      (response) => {
+        if (response.status == 200) {
+            console.log("res-")
+            console.log(response)
+        }
+      },
+      (error) => {
+        console.log("error: ", error);
+      }
+    );
+  };
 
-  const modelOpen = (item, name) => {
+  const dataDiscard = () => {
+    console.log(modalData);
+    handleClose(true);
+    historyServices.DiscardData(modalData).then(
+      (response) => {
+        if (response.status == 200) {
+        }
+      },
+      (error) => {
+        console.log("error: ", error);
+      }
+    );
+  };
+  
+  const modelOpen = (item, name,dataM) => {
+    setmodalData(dataM)
     handleOpen(true);
     setSubCat(item);
     setEmpName(name);
@@ -168,13 +198,27 @@ function History() {
         >
           <Box sx={style}>
             <h6>
-              Are you sure you want to return {subcat} issued to {empName}?
+              Are you sure you want to add {subcat} back to the inventory which
+              was issued to {empName}?
             </h6>
-            <Button onClick={handleClose} variant="contained" color="primary" sx={innerstyle}>
+            <Button
+              onClick={dataReturn}
+              variant="contained"
+              color="primary"
+              sx={innerstyle}
+            >
               Yes
             </Button>
+            <Button
+              onClick={dataDiscard}
+              variant="contained"
+              color="primary"
+              sx={innerstyle}
+            >
+              No discard this item
+            </Button>
             <Button onClick={handleClose} variant="contained" color="primary">
-              No
+              Back
             </Button>
           </Box>
         </Modal>
