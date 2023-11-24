@@ -26,11 +26,13 @@
 .nav-link{
     text-decoration: none;
     color:aliceblue;
-    margin: 1px 0.7rem;
+    margin: 3px 1rem;
+    font-size: 50px;
 }
 .nav-link:hover {
-    border-bottom: 1px solid aliceblue;
+    /* border-bottom: 1px solid aliceblue; */
     color:aliceblue;
+    text-decoration:underline;
     /* margin: 1px 0.7rem; */
 }
 

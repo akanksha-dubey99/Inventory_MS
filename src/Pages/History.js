@@ -7,11 +7,10 @@ import 'ag-grid-community/styles/ag-theme-alpine.css';
 import 'ag-grid-community/styles/ag-theme-balham.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Box, Button} from "@mui/material";
+import { Link,useNavigate } from "react-router-dom";
 
   
-    function handleClick() {
-      window.location.href = './Issue';
-    }
+    
 
 function History(){
  
@@ -21,6 +20,13 @@ function History(){
         fetchHistory()
     },[])
     
+    const navigate = useNavigate();
+    function handleClick() {
+        //   window.location.href = './Issue';
+        navigate("/issue")
+        }
+
+
     const fetchHistory=()=>{
         historyServices.getHistory().then(
             (response)=>{
