@@ -11,6 +11,11 @@ import "../Style/Grocery.css"
 function handleClick() {
   window.location.href = "./AddNewGrocery";
 }
+function LinkComponent(e) {
+   console.log(e.data.attachment)
+   const attach = e.data.attachment
+  return <Button onClick={() => attach}>Attachment</Button>;
+}
 
 const Grocery = () => {
   const [data, setData] = useState("");
@@ -21,30 +26,23 @@ const Grocery = () => {
   const columns = [
     // { field: 'id', headerName: 'Id', width: 90 },
     {
-      field: "item",
-      headerName: "Item",
+      field: "title",
+      headerName: "Title",
       minWidth: 200,
       flex: 1,
       sortable: true,
       filter: true,
     },
     {
-      field: "left_quantity",
-      headerName: "Available_Quantity",
+      field: "month",
+      headerName: "Month",
       flex: 1,
       sortable: true,
       filter: true,
     },
     {
-      field: "issue_Quantity",
-      headerName: "Issued_Quantity",
-      sortable: true,
-      filter: true,
-      flex: 1,
-    },
-    {
-      field: "total_quantity",
-      headerName: "Total_quantity",
+      field: "attachment",
+      cellRenderer: LinkComponent,
       sortable: true,
       filter: true,
       flex: 1,

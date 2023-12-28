@@ -59,13 +59,32 @@ const Post_Dispatch=(input)=>{
    )
 }
 
+const ReturnData=(modalData)=>{
+    return axios.post(
+     `${API_History}/Return`,modalData,
+     {
+         headers: {"Accept": "application/json"}
+     }
+    )
+ }
+ const DiscardData=(modalData)=>{
+    return axios.post(
+     `${API_History}/Discard`,modalData,
+     {
+         headers: {"Accept": "application/json"}
+     }
+    )
+ }
+
 const historyServices={
     getHistory,
     GetCategory,
     GetEmployee,
     Get_Subcategory,
     GetQuantity,
-    Post_Dispatch
+    Post_Dispatch,
+    ReturnData,
+    DiscardData
 }
 
 export default historyServices

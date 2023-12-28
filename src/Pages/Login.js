@@ -96,9 +96,9 @@ const Login = () => {
 
             {/* {islogged?<HandleLogin/>:(<div style={{color:'white',textAlign:'center',fontSize:'20px',marginTop:3}}><i> {login?'':"Please Enter Valid Credentials"} </i></div>)} */}
           </Box>
-          <Footer/>
         </Box>
       </div>
+      <Footer/>
     </>
   );
 };
