@@ -1,5 +1,4 @@
 import { Box, Button } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
 import inventoryServices from "../shared/services/inventory-services";
 import { useState, useEffect } from "react";
 import { AgGridReact } from "ag-grid-react";
@@ -7,6 +6,9 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import "ag-grid-community/styles/ag-theme-balham.css";
 import "../Style/Grocery.css"
+
+import {useNavigate} from "react-router-dom";
+
 
 function handleClick() {
   window.location.href = "./AddNewGrocery";
@@ -17,14 +19,20 @@ function LinkComponent(e) {
   return <Button onClick={() => attach}>Attachment</Button>;
 }
 
+
 const Grocery = () => {
   const [data, setData] = useState("");
   useEffect(() => {
     fetchGroceryDetails();
   }, []);
 
+  const navigate = useNavigate();
+  function handleClick() {
+      navigate("/addNewGrocery")
+      }
+
   const columns = [
-    // { field: 'id', headerName: 'Id', width: 90 },
+   
     {
       field: "title",
       headerName: "Title",

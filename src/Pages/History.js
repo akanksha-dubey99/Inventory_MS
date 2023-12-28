@@ -1,6 +1,7 @@
 import "../Style/History.css";
 import historyServices from "../shared/history-services";
 import { useEffect, useState } from "react";
+import { Link,useNavigate } from "react-router-dom";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -25,9 +26,32 @@ const innerstyle = {
   marginRight: "30px",
 };
 
+
 function handleClick() {
   window.location.href = "./Issue";
 }
+    useEffect(()=>{
+        fetchHistory()
+    },[])
+    
+    const navigate = useNavigate();
+    function handleClick() {
+        //   window.location.href = './Issue';
+        navigate("/issue")
+        }
+
+
+    const fetchHistory=()=>{
+        historyServices.getHistory().then(
+            (response)=>{
+                if(response.status == 200){
+                    setData(response.data)
+                }
+            } ,(error) => {
+                console.log("error: ",error)
+            }
+         ) ;
+    }
 
 function History() {
   const [data, setData] = useState([]);
@@ -37,10 +61,6 @@ function History() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
-  useEffect(() => {
-    fetchHistory();
-  }, []);
 
   function LinkComponent(e) {
     if (e.data.isReturnable == true) {

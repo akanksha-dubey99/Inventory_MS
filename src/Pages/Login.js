@@ -2,7 +2,7 @@ import "../Style/Login.css";
 import innologo from "../Components/innologo.jpg";
 import { Box, Button, FormControl, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import inventoryServices from "../shared/services/inventory-services";
 import { Loginheader } from "../Components/Header";
 import Footer from "../Components/Footer";
@@ -10,18 +10,17 @@ import Footer from "../Components/Footer";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
-  const [islogged, setIslogged] = useState();
-  // const [login,setLogin]=useState(true);
+  const [msg,setMsg]=useState(true)
   const input = {
     Email: email,
     Password: pass,
   };
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   function HandleLogin() {
     window.location.href = "./dashboard";
-    // navigate("/dashboard");
+     navigate("/dashboard");
   }
 
   const Login = (input) => {
@@ -29,11 +28,13 @@ const Login = () => {
       (response) => {
         if (response.status == 200) {
           if (response.data === true) {
-            // console.log(response.data);
+          
             // setIslogged(response.data)
-            // setLogin(response.data)
+            setMsg(response.data)
             localStorage.setItem("isLoggedIn", JSON.stringify(response.data));
             HandleLogin()
+          }else{
+            setMsg(response.data)
           }
         }
       },
@@ -45,7 +46,6 @@ const Login = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("input:- ",input);
     Login(input);
   }
 
@@ -93,12 +93,12 @@ const Login = () => {
                 Login
               </Button>
             </form>
-
-            {/* {islogged?<HandleLogin/>:(<div style={{color:'white',textAlign:'center',fontSize:'20px',marginTop:3}}><i> {login?'':"Please Enter Valid Credentials"} </i></div>)} */}
+            {msg?" ":(<div style={{color:'white',textAlign:'center',fontSize:'20px',marginTop:3}}><i>"Please Enter Valid Credentials"</i></div>)}
+       
           </Box>
+          {/* <Footer/> */}
         </Box>
       </div>
-      <Footer/>
     </>
   );
 };
