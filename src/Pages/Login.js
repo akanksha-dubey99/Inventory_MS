@@ -2,7 +2,7 @@ import "../Style/Login.css";
 import innologo from "../Components/innologo.jpg";
 import { Box, Button, FormControl, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import inventoryServices from "../shared/services/inventory-services";
 import { Loginheader } from "../Components/Header";
 import Footer from "../Components/Footer";
@@ -97,7 +97,7 @@ const Login = () => {
             {msg?" ":(<div style={{color:'white',textAlign:'center',fontSize:'20px',marginTop:3}}><i>"Please Enter Valid Credentials"</i></div>)}
        
           </Box>
-          <Footer/>
+          {/* <Footer/> */}
         </Box>
       </div>
     </>
