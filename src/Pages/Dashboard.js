@@ -158,7 +158,6 @@ const fetchMiscellaneous=()=>{
     },
     data: [
       {type: 'pie',
-        color: "rgba(163,22,7,.5)",
         dataPoints:Sanitation.map((dp) => ({ label: dp.sub_category, y: dp.quantity, label: String(dp.sub_category) })),
       },], },
   options6 = {

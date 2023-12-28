@@ -46,7 +46,6 @@ const Login = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-   // console.log("input:- ",input);
     Login(input);
   }
 
