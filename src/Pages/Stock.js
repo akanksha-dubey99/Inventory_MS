@@ -1,4 +1,3 @@
-import Data from "../Demo_Data/StockData";
 import stockServices from "../shared/stockServices";
 import { useEffect, useState,} from "react";
 import { AgGridColumn, AgGridReact } from "ag-grid-react";
@@ -29,16 +28,20 @@ const Stock = () => {
   const [open, setOpen] = React.useState(false);
   const [innerData, setInnerData] = useState();
   const [moreData, setmoreData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  useEffect(() => {
+    fetchstock();
+  }, []);
+  
   function LinkComponent(e) {
-    // console.log(e.data)
     return <Button onClick={() => modelOpen(e.data.subcategory)}>Details</Button>;
   }
 
-  const ModalData = (data) => {
-    stockServices.getStocMoreInfo(data).then(
+  const ModalData =async (data) => {
+   await stockServices.getStocMoreInfo(data).then(
       (response) => {
         if (response.status == 200) {
           setmoreData(response.data);
@@ -55,15 +58,12 @@ const Stock = () => {
     handleOpen(true);
     setInnerData(data);
   };
-  useEffect(() => {
-    fetchstock();
-  }, []);
   const fetchstock = () => {
     stockServices.getStock().then(
       (response) => {
-        //console.log(response.data);
         if (response.status == 200) {
           setData(response.data);
+          setLoading(false);
         }
       },
       (error) => {
@@ -126,6 +126,7 @@ const Stock = () => {
         <div className="tbldivstock">
           <h2 className="addhead text-center">Inventory Stock</h2>
           <hr />
+          {loading?<div style={{textAlign:"center",marginTop:"20%",fontSize:"20px"}}><i className="fa fa-spinner fa-spin" />&nbsp;Loading.........</div>:
           <div className="ag-theme-balham" id="tbldivstock">
             <AgGridReact
               columnDefs={stockTable}
@@ -157,7 +158,8 @@ const Stock = () => {
 
               </Box>
             </Modal>
-          </div>
+          </div> }
+          
         </div>
       </div>
     </>

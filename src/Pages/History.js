@@ -25,7 +25,6 @@ const style = {
 const innerstyle = {
   marginRight: "30px",
 };
-
 function History() {
   const [data, setData] = useState([]);
   const [subcat, setSubCat] = useState([]);
@@ -41,7 +40,6 @@ function History() {
 
 const navigate = useNavigate();
 function handleClick() {
-    //   window.location.href = './Issue';
     navigate("/issue")
     }
 

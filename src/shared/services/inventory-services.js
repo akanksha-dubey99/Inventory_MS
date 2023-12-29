@@ -7,12 +7,18 @@ const PostInventoryData = (input) => {
   });
 };
 
-const PostGroceryData = (data, formData) => {
-    console.log("from API",formData);
-    return axios.post(`${API_Inventory}/AddGrocery`, data, formData, {
-    headers: { Accept: "multipart/form-data" },
-  });
-};
+const PostGroceryData=(data)=>{
+    return axios.post(
+        `${API_Inventory}/AddGrocery`,
+        data,
+        {
+            headers: {
+                "Accept": "application/json",
+            "Content-Type": "multipart/form-data",
+          }
+        }
+    )
+}
 
 const PostEmployeeDetails = (input) => {
   return axios.post(`${API_Inventory}/AddEmployee`, input, {

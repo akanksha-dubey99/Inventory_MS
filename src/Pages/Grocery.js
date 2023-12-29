@@ -10,14 +10,14 @@ import "../Style/Grocery.css"
 import {useNavigate} from "react-router-dom";
 
 
-function handleClick() {
-  window.location.href = "./AddNewGrocery";
-}
-function LinkComponent(e) {
-   console.log(e.data.attachment)
-   const attach = e.data.attachment
-  return <Button onClick={() => attach}>Attachment</Button>;
-}
+// function handleClick() {
+//   window.location.href = "./AddNewGrocery";
+// }
+// function LinkComponent(e) {
+//    console.log(e.data.attachment)
+//    const attach = e.data.attachment
+//   return <Button onClick={() => attach}>Attachment</Button>;
+// }
 
 
 const Grocery = () => {
@@ -32,7 +32,6 @@ const Grocery = () => {
       }
 
   const columns = [
-   
     {
       field: "title",
       headerName: "Title",
@@ -50,7 +49,15 @@ const Grocery = () => {
     },
     {
       field: "attachment",
-      cellRenderer: LinkComponent,
+      headerName: "Attachment",
+      sortable: true,
+      filter: true,
+      flex: 1,
+      cellRenderer: function(params) { return <a href={params.value} target="_blank"> {params.value} </a>}
+    },
+    {
+      field: "dateCreated",
+      headerName: "Date",
       sortable: true,
       filter: true,
       flex: 1,
@@ -85,7 +92,6 @@ const Grocery = () => {
         </h1>
         <hr />
         <Box sx={{ height: "3rem" }}>
-          {/* <Button sx={{float:'right'}}> Add New</Button> */}
           <Button
             variant="outlined"
             onClick={handleClick}

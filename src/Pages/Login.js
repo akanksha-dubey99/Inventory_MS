@@ -28,8 +28,6 @@ const Login = () => {
       (response) => {
         if (response.status == 200) {
           if (response.data === true) {
-          
-            // setIslogged(response.data)
             setMsg(response.data)
             localStorage.setItem("isLoggedIn", JSON.stringify(response.data));
             HandleLogin()
