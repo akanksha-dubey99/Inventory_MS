@@ -16,7 +16,9 @@ function Inventory() {
   const [item, setItem] = useState([]);
   const [subitem, setSubitem] = useState([]);
   const [show, setShow] = useState(false);
+ const[isUnit,setisUnit] = useState(false);
   const [quantity, setQuantity] = useState("");
+  const [unitData, setunitData] = useState("");
   const [category, setCategory] = useState("");
   const [subCategory, setSubCategory] = useState("");
   const [message, setMessage] = useState("");
@@ -24,6 +26,7 @@ function Inventory() {
     item_category: category,
     sub_category: subCategory,
     quantity: quantity,
+    unit: unitData,
   };
 
   const filter = createFilterOptions();
@@ -65,14 +68,18 @@ function Inventory() {
           setCategory("");
           setSubCategory("");
           setQuantity("");
+          setunitData("");
           setMessage(response.data);
-          console.log(response.data)
+          console.log(response.data);
         }
       },
       (error) => {
         console.log("error", error);
       }
     );
+  };
+  let mystyles = {
+    display: "block",
   };
 
   function handleChange(e) {
@@ -86,6 +93,18 @@ function Inventory() {
       selectedCategory == "Housekeeping"
     ) {
       setShow(true);
+      console.log(mystyles);
+
+      if (selectedCategory == "Grocery" || selectedCategory == "Housekeeping") {
+        mystyles = {
+          display: "block",
+        };
+        console.log(mystyles);
+        setisUnit(true)
+      }
+    }
+    else{
+      setisUnit(false)
     }
     SubCategory(selectedCategory);
   }
@@ -109,7 +128,9 @@ function Inventory() {
           >
             {/* <MenuItem value="">--Select--</MenuItem> */}
             {subitem.map((subcategory) => (
-              <MenuItem value={subcategory} key={subcategory}>{subcategory}</MenuItem>
+              <MenuItem value={subcategory} key={subcategory}>
+                {subcategory}
+              </MenuItem>
             ))}
           </Select>
         </FormControl>
@@ -158,7 +179,9 @@ function Inventory() {
         </h1>
         <hr />
         <Box textAlign={"center"} sx={{ marginTop: 5 }}>
-        <div className="message" style={{margintop:'1%'}}>{message ? <p style={{color:"green"}}>{message}</p> : null}</div>
+          <div className="message" style={{ margintop: "1%" }}>
+            {message ? <p style={{ color: "green" }}>{message}</p> : null}
+          </div>
           {/* <span style={{ color: "green" }}>{message}</span> */}
           <form onSubmit={handleSubmit} style={{ marginTop: "2%" }}>
             <FormControl fullWidth sx={{ width: "75%" }} variant="standard">
@@ -171,7 +194,9 @@ function Inventory() {
               >
                 {/* <MenuItem value="" selected='selected'>--Select--</MenuItem> */}
                 {item.map((category) => (
-                  <MenuItem value={category} key={category}>{category}</MenuItem>
+                  <MenuItem value={category} key={category}>
+                    {category}
+                  </MenuItem>
                 ))}
               </Select>
             </FormControl>
@@ -189,6 +214,20 @@ function Inventory() {
               onChange={(e) => setQuantity(e.target.value)}
               required
             />
+           {isUnit && <FormControl fullWidth sx={{ width: "75%" }} variant="standard">
+              <InputLabel id="unit" style={mystyles}>
+                Unit
+              </InputLabel>
+              <Select
+                style={mystyles}
+                labelId="unit"
+                value={unitData}
+                onChange={(e) => setunitData(e.target.value)}
+              >
+                <MenuItem value="Kilogram">Kilogram</MenuItem>
+                <MenuItem value="Litre">Litre</MenuItem>
+              </Select>
+            </FormControl>}
 
             {/* <TextField id="price" label="Price (Per Piece)" variant="standard" type="number" InputProps={{ inputProps: { min: "0" } }} sx={{ m: 1, width: '75%' }} /> */}
             <br />
