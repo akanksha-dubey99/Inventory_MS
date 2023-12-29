@@ -1,6 +1,6 @@
 import { Box, FormControl, MenuItem } from "@mui/material";
-import { TextField,InputLabel,Select } from '@mui/material';
-import { useState } from "react";
+import { TextField, InputLabel, Select } from "@mui/material";
+import { useEffect, useState } from "react";
 import inventoryServices from "../shared/services/inventory-services";
 
 const AddNewGrocery = () => {
@@ -76,6 +76,6 @@ const AddNewGrocery = () => {
     );
 };
 
-export default function AddNew(){
-    return <AddNewGrocery/>
+export default function AddNew() {
+  return <AddNewGrocery />;
 }
