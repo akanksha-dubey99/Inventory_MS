@@ -8,11 +8,12 @@ const AddNewGrocery = () => {
     const [month,setMonth]=useState('')
     const [file,setFile]=useState('')
     const [msg,setMsg]=useState('')
-    const data={
-        Title:title,
-        Month:month,
-        Attachment:file
-    }
+    const [filename,setFilename]=useState('')
+
+    var data=new FormData();  
+        data.append("ImgFile",file);
+        data.append("Title",title);
+        data.append("Month",month);
      
     const Month=[
         'January','February','March','April','May','June','July','August','September','October','November','December'
@@ -25,6 +26,7 @@ const AddNewGrocery = () => {
                setFile('')
                setMonth('')
                setTitle('')
+               setFilename('')
                setMsg('Grocery Details Added SuccessFully');
         },(error)=>{
             console.log("error",error)
@@ -32,7 +34,7 @@ const AddNewGrocery = () => {
        )
     }
     let handleSubmit=(e)=>{
-        e.preventDefault();
+        e.preventDefault();       
         AddGrocery(data)
       }
 
@@ -40,6 +42,11 @@ const AddNewGrocery = () => {
         setTitle(e.target.value)
         setMsg('')
       }
+
+    function handleFile(e){
+        setFile(e.target.files[0])
+        setFilename(e.target.value)
+    }
 
     return(
         <>
@@ -56,8 +63,7 @@ const AddNewGrocery = () => {
                   
                  </Select>
                  </FormControl>
-                  
-                  <TextField type="file" variant="standard" label="Attachment" value={file} onChange={(e)=>setFile(e.target.value)} sx={{marginTop:'5%',paddingTop:'5%',paddingBottom:'3%'}} fullWidth required/>
+                  <TextField type="file" variant="standard" label="Attachment" value={filename} onChange={handleFile} sx={{marginTop:'5%',paddingTop:'5%',paddingBottom:'3%'}} fullWidth />
                   <button id="button" type="submit">Submit</button>
                 </form>
 

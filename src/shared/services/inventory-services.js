@@ -16,7 +16,10 @@ const PostGroceryData=(data)=>{
         `${API_Inventory}/AddGrocery`,
         data,
         {
-            headers: {"Accept": "application/json"}
+            headers: {
+                "Accept": "application/json",
+            "Content-Type": "multipart/form-data",
+          }
         }
     )
 }

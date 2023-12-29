@@ -22,7 +22,6 @@ function History(){
     
     const navigate = useNavigate();
     function handleClick() {
-        //   window.location.href = './Issue';
         navigate("/issue")
         }
 

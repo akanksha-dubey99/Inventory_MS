@@ -18,7 +18,6 @@ export default function App() {
 
   useEffect(() => {
     const login = localStorage.getItem("isLoggedIn");
-    // console.log("login:- ", login);
     if (login != null) {
       setIsLoggedIn(true);
     }

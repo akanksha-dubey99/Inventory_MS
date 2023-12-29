@@ -20,32 +20,32 @@ const Grocery = () => {
       }
 
   const columns = [
-   
     {
-      field: "item",
-      headerName: "Item",
+      field: "title",
+      headerName: "Title",
       minWidth: 200,
       flex: 1,
       sortable: true,
       filter: true,
     },
     {
-      field: "left_quantity",
-      headerName: "Available_Quantity",
+      field: "month",
+      headerName: "Month",
       flex: 1,
       sortable: true,
       filter: true,
     },
     {
-      field: "issue_Quantity",
-      headerName: "Issued_Quantity",
+      field: "attachment",
+      headerName: "Attachment",
       sortable: true,
       filter: true,
       flex: 1,
+      cellRenderer: function(params) { return <a href={params.value} target="_blank"> {params.value} </a>}
     },
     {
-      field: "total_quantity",
-      headerName: "Total_quantity",
+      field: "dateCreated",
+      headerName: "Date",
       sortable: true,
       filter: true,
       flex: 1,
@@ -80,7 +80,6 @@ const Grocery = () => {
         </h1>
         <hr />
         <Box sx={{ height: "3rem" }}>
-          {/* <Button sx={{float:'right'}}> Add New</Button> */}
           <Button
             variant="outlined"
             onClick={handleClick}
