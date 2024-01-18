@@ -1,6 +1,6 @@
 import axios from "axios";
-import authHeader from "./services/auth-header";
-import {Stock_url} from "../Constant/urlConstants";
+import authHeader from "./auth-header";
+import {Stock_url} from "../../Constant/urlConstants";
 
 const getStock= async ()=>{
     return await axios.get(

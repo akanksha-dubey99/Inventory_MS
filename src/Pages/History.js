@@ -1,5 +1,5 @@
 import "../Style/History.css";
-import historyServices from "../shared/history-services";
+import historyServices from "../shared/services/history-services";
 import { useEffect, useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import { AgGridReact } from "ag-grid-react";
@@ -33,6 +33,7 @@ function History() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  
 
   useEffect(()=>{
     fetchHistory()
@@ -57,13 +58,11 @@ function handleClick() {
     }
   }
   const dataReturn = () => {
-    console.log(modalData);
     handleClose(true);
     historyServices.ReturnData(modalData).then(
       (response) => {
         if (response.status == 200) {
-            console.log("res-")
-            console.log(response)
+          fetchHistory()
         }
       },
       (error) => {
@@ -73,11 +72,11 @@ function handleClick() {
   };
 
   const dataDiscard = () => {
-    console.log(modalData);
     handleClose(true);
     historyServices.DiscardData(modalData).then(
       (response) => {
         if (response.status == 200) {
+          fetchHistory()
         }
       },
       (error) => {
@@ -93,7 +92,7 @@ function handleClick() {
     setEmpName(name);
   };
 
-  const fetchHistory = () => {
+  function fetchHistory() {
     historyServices.getHistory().then(
       (response) => {
         if (response.status == 200) {
@@ -104,7 +103,7 @@ function handleClick() {
         console.log("error: ", error);
       }
     );
-  };
+  }
 
   const columnDefs = [
     {
