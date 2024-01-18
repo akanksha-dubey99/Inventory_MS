@@ -16,7 +16,9 @@ function Inventory() {
   const [item, setItem] = useState([]);
   const [subitem, setSubitem] = useState([]);
   const [show, setShow] = useState(false);
+ const[isUnit,setisUnit] = useState(false);
   const [quantity, setQuantity] = useState("");
+  const [unitData, setunitData] = useState("");
   const [category, setCategory] = useState("");
   const [subCategory, setSubCategory] = useState("");
   const [message, setMessage] = useState("");
@@ -24,6 +26,7 @@ function Inventory() {
     item_category: category,
     sub_category: subCategory,
     quantity: quantity,
+    unit: unitData,
   };
 
   const filter = createFilterOptions();
@@ -65,6 +68,7 @@ function Inventory() {
           setCategory("");
           setSubCategory("");
           setQuantity("");
+          setunitData("");
           setMessage(response.data);
         }
       },
@@ -72,6 +76,9 @@ function Inventory() {
         console.log("error", error);
       }
     );
+  };
+  let mystyles = {
+    display: "block",
   };
 
   function handleChange(e) {
@@ -85,6 +92,18 @@ function Inventory() {
       selectedCategory == "Housekeeping"
     ) {
       setShow(true);
+      console.log(mystyles);
+
+      if (selectedCategory == "Grocery" || selectedCategory == "Housekeeping") {
+        mystyles = {
+          display: "block",
+        };
+        console.log(mystyles);
+        setisUnit(true)
+      }
+    }
+    else{
+      setisUnit(false)
     }
     SubCategory(selectedCategory);
   }
@@ -107,7 +126,9 @@ function Inventory() {
             defaultValue={""}
           >
             {subitem.map((subcategory) => (
-              <MenuItem value={subcategory} key={subcategory}>{subcategory}</MenuItem>
+              <MenuItem value={subcategory} key={subcategory}>
+                {subcategory}
+              </MenuItem>
             ))}
           </Select>
         </FormControl>
@@ -165,7 +186,9 @@ function Inventory() {
                 required
               >
                 {item.map((category) => (
-                  <MenuItem value={category} key={category}>{category}</MenuItem>
+                  <MenuItem value={category} key={category}>
+                    {category}
+                  </MenuItem>
                 ))}
               </Select>
             </FormControl>
