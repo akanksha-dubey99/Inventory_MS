@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import "../Style/Issue.css";
 import { useState, useEffect } from "react";
-import historyServices from "../shared/history-services";
+import historyServices from "../shared/services/history-services";
 
 
 function Issue() {

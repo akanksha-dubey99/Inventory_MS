@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import CanvasJSReact from '@canvasjs/react-charts';
 import '../Style/Dashboard.css'; 
 import { useEffect, useState } from "react";
-import dashboardServices from "../shared/dashboard_services";
+import dashboardServices from "../shared/services/dashboard_services";
 
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 var chart;
@@ -31,7 +31,7 @@ const fetchDUsedUnits=()=>{
       (response)=>{
           if(response.status == 200){
             setUsed(response.data)
-              console.log(response.data)
+             
           }
       } ,(error) => {
           console.log("error: ",error)
@@ -41,7 +41,7 @@ const fetchLeftUnits=()=>{
       (response)=>{
           if(response.status == 200){
             setLeft(response.data)
-              console.log(response.data)
+             
           }
       } ,(error) => {
           console.log("error: ",error)
@@ -51,7 +51,7 @@ const fetchsportsGoods=()=>{
       (response)=>{
           if(response.status == 200){
             setsportsGoods(response.data)
-              console.log(response.data)
+             
           }
       } ,(error) => {
           console.log("error: ",error)
@@ -61,7 +61,7 @@ const fetchStationary=()=>{
       (response)=>{
           if(response.status == 200){
             setStationary(response.data)
-              console.log(response.data)
+              
           }
       } ,(error) => {
           console.log("error: ",error)
@@ -71,7 +71,7 @@ const fetchSanitation=()=>{
       (response)=>{
           if(response.status == 200){
             setSanitation(response.data)
-              console.log(response.data)
+             
           }
       } ,(error) => {
           console.log("error: ",error)
@@ -81,7 +81,7 @@ const fetchAccessories=()=>{
       (response)=>{
           if(response.status == 200){
             setAccessories(response.data)
-              console.log(response.data)
+              
           }
       } ,(error) => {
           console.log("error: ",error)
@@ -91,7 +91,7 @@ const fetchWelcomeKit=()=>{
       (response)=>{
           if(response.status == 200){
             setWelcomeKit(response.data)
-              console.log(response.data)
+              
           }
       } ,(error) => {
           console.log("error: ",error)
@@ -101,7 +101,7 @@ const fetchMiscellaneous=()=>{
     (response)=>{
         if(response.status == 200){
           setMiscellaneous(response.data)
-            console.log(response.data)
+           
         }
     } ,(error) => {
         console.log("error: ",error)

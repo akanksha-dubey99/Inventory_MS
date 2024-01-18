@@ -1,4 +1,4 @@
-import stockServices from "../shared/stockServices";
+import stockServices from "../shared/services/stockServices";
 import { useEffect, useState,} from "react";
 import { AgGridColumn, AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
@@ -133,7 +133,6 @@ const Stock = () => {
               rowData={data}
               pagination={true}
               paginationPageSize={15}
-              //containerStyle={{border:"1px solid red"}}
             />
             <Modal
               open={open}
@@ -142,7 +141,6 @@ const Stock = () => {
               aria-describedby="modal-modal-description"
             >
               <Box sx={style}>
-                {/* {innerData} */}
                 <center className="ag-theme-balham" id="tbldivstock" style={{width:"100%"}}>
                 
                 <h5 style={{width:"100%",fontSize: "x-large"}}>{innerData}</h5>

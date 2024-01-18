@@ -1,5 +1,5 @@
 import axios from "axios";
-import {Dashboard_url} from "../Constant/urlConstants";
+import {Dashboard_url} from "../../Constant/urlConstants";
 
 const getUsedUnit = async ()=>{
     return await axios.get(

@@ -8,7 +8,7 @@ import {
   FormControl,
   TextField,
 } from "@mui/material";
-import historyServices from "../shared/history-services";
+import historyServices from "../shared/services/history-services";
 import inventoryServices from "../shared/services/inventory-services";
 import { Autocomplete, createFilterOptions } from "@mui/material";
 
@@ -70,7 +70,6 @@ function Inventory() {
           setQuantity("");
           setunitData("");
           setMessage(response.data);
-          console.log(response.data);
         }
       },
       (error) => {
@@ -126,7 +125,6 @@ function Inventory() {
             required
             defaultValue={""}
           >
-            {/* <MenuItem value="">--Select--</MenuItem> */}
             {subitem.map((subcategory) => (
               <MenuItem value={subcategory} key={subcategory}>
                 {subcategory}
@@ -157,8 +155,6 @@ function Inventory() {
             clearOnBlur
             handleHomeEndKeys
             options={subitem}
-            // renderOption={(option) => option}
-            // style={{ width: '75%' }}
             freeSolo
             renderInput={(params) => (
               <TextField {...params} variant="standard" label="Sub Category" />
@@ -179,10 +175,7 @@ function Inventory() {
         </h1>
         <hr />
         <Box textAlign={"center"} sx={{ marginTop: 5 }}>
-          <div className="message" style={{ margintop: "1%" }}>
-            {message ? <p style={{ color: "green" }}>{message}</p> : null}
-          </div>
-          {/* <span style={{ color: "green" }}>{message}</span> */}
+        <div className="message" style={{margintop:'1%'}}>{message ? <p style={{color:"green"}}>{message}</p> : null}</div>
           <form onSubmit={handleSubmit} style={{ marginTop: "2%" }}>
             <FormControl fullWidth sx={{ width: "75%" }} variant="standard">
               <InputLabel id="demo-select">Category</InputLabel>
@@ -192,7 +185,6 @@ function Inventory() {
                 value={category}
                 required
               >
-                {/* <MenuItem value="" selected='selected'>--Select--</MenuItem> */}
                 {item.map((category) => (
                   <MenuItem value={category} key={category}>
                     {category}
@@ -213,23 +205,8 @@ function Inventory() {
               value={quantity}
               onChange={(e) => setQuantity(e.target.value)}
               required
-            />
-           {isUnit && <FormControl fullWidth sx={{ width: "75%" }} variant="standard">
-              <InputLabel id="unit" style={mystyles}>
-                Unit
-              </InputLabel>
-              <Select
-                style={mystyles}
-                labelId="unit"
-                value={unitData}
-                onChange={(e) => setunitData(e.target.value)}
-              >
-                <MenuItem value="Kilogram">Kilogram</MenuItem>
-                <MenuItem value="Litre">Litre</MenuItem>
-              </Select>
-            </FormControl>}
-
-            {/* <TextField id="price" label="Price (Per Piece)" variant="standard" type="number" InputProps={{ inputProps: { min: "0" } }} sx={{ m: 1, width: '75%' }} /> */}
+            /> 
+            
             <br />
 
             <button type="submit" className="btn btn-primary">
