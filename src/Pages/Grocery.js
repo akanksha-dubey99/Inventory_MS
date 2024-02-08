@@ -9,17 +9,6 @@ import "../Style/Grocery.css"
 
 import {useNavigate} from "react-router-dom";
 
-
-// function handleClick() {
-//   window.location.href = "./AddNewGrocery";
-// }
-// function LinkComponent(e) {
-//    console.log(e.data.attachment)
-//    const attach = e.data.attachment
-//   return <Button onClick={() => attach}>Attachment</Button>;
-// }
-
-
 const Grocery = () => {
   const [data, setData] = useState("");
   useEffect(() => {

@@ -206,7 +206,20 @@ function Inventory() {
               onChange={(e) => setQuantity(e.target.value)}
               required
             /> 
-            
+            {isUnit && <FormControl fullWidth sx={{ width: "75%" }} variant="standard">
+              <InputLabel id="unit" style={mystyles}>
+                Unit
+              </InputLabel>
+              <Select
+                style={mystyles}
+                labelId="unit"
+                value={unitData}
+                onChange={(e) => setunitData(e.target.value)}
+              >
+                <MenuItem value="Kilogram">Kilogram</MenuItem>
+                <MenuItem value="Litre">Litre</MenuItem>
+              </Select>
+            </FormControl>}
             <br />
 
             <button type="submit" className="btn btn-primary">
